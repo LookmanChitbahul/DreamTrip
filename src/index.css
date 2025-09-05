@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mauritius Dream-Trip Design System - Tropical Paradise Theme */
+
+@layer base {
+  :root {
+    /* Tropical color palette inspired by Mauritius beaches and sunsets */
+    --background: 193 100% 96%;
+    --foreground: 205 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 205 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 205 30% 15%;
+
+    /* Primary: Turquoise ocean */
+    --primary: 179 84% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 179 84% 65%;
+
+    /* Secondary: Warm sunset coral */
+    --secondary: 25 85% 70%;
+    --secondary-foreground: 205 30% 15%;
+
+    /* Muted: Soft beach sand */
+    --muted: 45 35% 92%;
+    --muted-foreground: 205 20% 45%;
+
+    /* Accent: Golden tropical sun */
+    --accent: 45 95% 65%;
+    --accent-foreground: 205 30% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 193 25% 85%;
+    --input: 193 25% 90%;
+    --ring: 179 84% 45%;
+
+    /* Custom tropical colors */
+    --ocean-deep: 205 85% 35%;
+    --ocean-light: 193 75% 85%;
+    --sunset-orange: 25 85% 60%;
+    --palm-green: 145 60% 45%;
+    --sand-warm: 45 40% 88%;
+    
+    /* Gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(179 84% 45%), hsl(193 75% 65%));
+    --gradient-sunset: linear-gradient(135deg, hsl(25 85% 70%), hsl(45 95% 65%));
+    --gradient-tropical: linear-gradient(135deg, hsl(179 84% 45%), hsl(25 85% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(179 84% 45%) 0%, hsl(193 75% 65%) 50%, hsl(25 85% 70%) 100%);
+    
+    /* Shadows with tropical colors */
+    --shadow-tropical: 0 10px 30px -10px hsl(179 84% 45% / 0.3);
+    --shadow-sunset: 0 8px 25px -8px hsl(25 85% 70% / 0.4);
+    --shadow-soft: 0 4px 15px -4px hsl(193 25% 50% / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode with tropical evening vibes */
+    --background: 205 30% 8%;
+    --foreground: 193 100% 95%;
+
+    --card: 205 25% 12%;
+    --card-foreground: 193 100% 95%;
+
+    --popover: 205 25% 12%;
+    --popover-foreground: 193 100% 95%;
+
+    --primary: 179 84% 55%;
+    --primary-foreground: 205 30% 8%;
+    --primary-glow: 179 84% 75%;
+
+    --secondary: 25 75% 60%;
+    --secondary-foreground: 205 30% 8%;
+
+    --muted: 205 15% 18%;
+    --muted-foreground: 193 20% 70%;
+
+    --accent: 45 85% 55%;
+    --accent-foreground: 205 30% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 193 100% 95%;
+
+    --border: 205 20% 20%;
+    --input: 205 20% 18%;
+    --ring: 179 84% 55%;
+
+    /* Dark mode tropical colors */
+    --ocean-deep: 205 85% 25%;
+    --ocean-light: 193 75% 25%;
+    --sunset-orange: 25 75% 50%;
+    --palm-green: 145 60% 35%;
+    --sand-warm: 45 30% 15%;
+    
+    --sidebar-background: 205 25% 10%;
+    --sidebar-foreground: 193 100% 90%;
+    --sidebar-primary: 179 84% 55%;
+    --sidebar-primary-foreground: 205 30% 8%;
+    --sidebar-accent: 205 20% 15%;
+    --sidebar-accent-foreground: 193 100% 90%;
+    --sidebar-border: 205 20% 20%;
+    --sidebar-ring: 179 84% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
