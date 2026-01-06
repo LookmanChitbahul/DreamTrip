@@ -109,34 +109,31 @@ export default function ChatWidget({ isOpen, onClose }: ChatWidgetProps) {
   setMessages((prev) => [...prev, loadingMessage]);
 
   try {
-    // 🔑 Call Gemini API directly
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDmEu-HgH4AGJ4c-3hJPq28KEFjHkmWASk",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: currentInput, // Send user input to Gemini
-                },
-              ],
-            },
-          ],
-        }),
+    // Call Supabase travel-assistant edge function
+    console.log('Calling travel-assistant function...');
+    const { data, error } = await supabase.functions.invoke('travel-assistant', {
+      body: {
+        message: currentInput,
+        itinerary: [],
+        tripData: userPreferences,
+        selectedDay: undefined,
+        userLocation: userPreferences?.location || "Port Louis, Mauritius"
       }
-    );
+    });
 
-    const data = await response.json();
+    console.log('Function response:', { data, error });
+
+    if (error) {
+      console.error('Function error:', error);
+      throw new Error(error.message || 'Failed to get AI response');
+    }
+
+    if (!data) {
+      throw new Error('No response data from function');
+    }
 
     // Extract AI text safely
-    const aiText =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "I couldn’t generate a proper response. Please try again.";
+    const aiText = data?.response || "I couldn't generate a proper response. Please try again.";
 
     // Replace loading message with AI response
     const aiResponse: Message = {
@@ -144,17 +141,18 @@ export default function ChatWidget({ isOpen, onClose }: ChatWidgetProps) {
       text: aiText,
       sender: "ai",
       timestamp: new Date(),
+      contextData: data?.contextData
     };
 
     setMessages((prev) =>
       prev.map((msg) => (msg.id === loadingMessage.id ? aiResponse : msg))
     );
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    console.error("Travel Assistant Error:", error);
 
     const errorMessage: Message = {
       id: (Date.now() + 2).toString(),
-      text: "⚠️ I’m having trouble connecting to Gemini. Please try again shortly!",
+      text: "⚠️ I'm having trouble connecting to the travel assistant. Please try again shortly! Make sure your Supabase project is set up correctly.",
       sender: "ai",
       timestamp: new Date(),
     };
